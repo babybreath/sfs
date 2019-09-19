@@ -1,0 +1,26 @@
+{
+  "name": "sfs",
+  "version": "1.0.0",
+  "description": "simple file send",
+  "main": "server/app.js",
+  "scripts": {
+    "start": "node server/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/babybreath/sfs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/babybreath/sfs/issues"
+  },
+  "homepage": "https://github.com/babybreath/sfs#readme",
+  "dependencies": {
+    "koa": "^2.8.1",
+    "koa-body": "^4.1.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0"
+  }
+}
