@@ -1,0 +1,14 @@
+{
+  "apps": [
+    {
+      "name": "sfs",
+      "script": "server/app.js",
+      "watch": false,
+      "exec_mode": "cluster",
+      "instances": "2",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  ]
+}
