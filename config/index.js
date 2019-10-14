@@ -29,9 +29,13 @@ const conf = {
   // 否则使用本地IP
   LOCALHOST: `http://${localIp}:${SERVER_PORT}`,
   // 静态处理路径
-  STATIC_PATH: '../static',
+  STATIC_PATH: `${__dirname}/../static`,
   // 文件根路径
   FILE_PATH: 'file',
+  // 上传接口路径
+  UPLOAD_PATH: '/upload',
+  // 上传文件大小最大值 单位字节
+  UPLOAD_FILE_MAX_SIZE: 1024 * 1024 * 1024,
 };
 
 conf.FILE_PATH_LOCAL = path.join(conf.STATIC_PATH, conf.FILE_PATH);
@@ -48,4 +52,4 @@ try {
   fs.mkdirSync(conf.FILE_PATH_LOCAL);
 }
 
-exports = conf;
+module.exports = conf;

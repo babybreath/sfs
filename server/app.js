@@ -7,36 +7,51 @@ const koaBody = require('koa-body');
 const koaStatic = require('koa-static');
 const conf = require('../config');
 
+app.use(koaStatic(conf.STATIC_PATH));
+
 router.post(
-  '/upload',
+  conf.UPLOAD_PATH,
   koaBody({
     multipart: true,
     formidable: {
-      maxFileSize: 1024 * 1024 * 1024, // 设置上传文件大小最大限制 1GB
+      maxFileSize: conf.UPLOAD_FILE_MAX_SIZE, // 设置上传文件大小最大限制
     },
   }),
-  ctx => {
+  async ctx => {
     const file = ctx.request.files.file; // 获取上传文件
     const reader = fs.createReadStream(file.path);
     let filePath = conf.FILE_PATH_LOCAL + `/${file.name}`;
     // 创建可写流
     const upStream = fs.createWriteStream(filePath);
+    // 返回下载地址
+    const downloadUrl = `${conf.HOST || conf.LOCALHOST}/${conf.FILE_PATH}/${
+      file.name
+    }`;
+
     // 可读流通过管道写入可写流
-    reader.pipe(upStream);
-
-    console.log(`${filePath} saved.`);
-
-    // => POST body
+    await new Promise((resolve, reject) => {
+      reader
+        .pipe(upStream)
+        .on('error', err => {
+          reject(err);
+        })
+        .on('finish', () => {
+          console.log(`${filePath} saved.`);
+          resolve();
+        });
+    });
     ctx.body = {
       meta: { code: 200, message: 'ok' },
-      data: `${conf.HOST || conf.LOCALHOST}/${FILE_PATH}/${file.name}`,
+      data: downloadUrl,
     };
   }
 );
 
-app.use(koaStatic(path.join(__dirname, conf.STATIC_PATH)));
-
 app.use(router.routes());
 
 app.listen(conf.SERVER_PORT);
+// 错误处理
+app.on('error', err => {
+  console.log(err);
+});
 console.log('server start...');
