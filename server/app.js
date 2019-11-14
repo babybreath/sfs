@@ -54,4 +54,4 @@ app.listen(conf.SERVER_PORT);
 app.on('error', err => {
   console.log(err);
 });
-console.log('server start...');
+console.log(`server start at ${conf.HOST || conf.LOCALHOST}`);
