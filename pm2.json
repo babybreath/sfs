@@ -4,8 +4,8 @@
       "name": "sfs",
       "script": "server/app.js",
       "watch": false,
-      "exec_mode": "cluster",
-      "instances": "2",
+      "exec_mode": "fork",
+      "instances": "1",
       "env": {
         "NODE_ENV": "production"
       }
