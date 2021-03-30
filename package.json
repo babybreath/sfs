@@ -18,9 +18,9 @@
   },
   "homepage": "https://github.com/babybreath/sfs#readme",
   "dependencies": {
-    "koa": "^2.8.1",
-    "koa-body": "^4.1.0",
-    "koa-router": "^7.4.0",
+    "@koa/router": "^10.0.0",
+    "koa": "^2.13.1",
+    "koa-body": "^4.2.0",
     "koa-static": "^5.0.0"
   }
 }
