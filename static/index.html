@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>simple file send</title>
     <link href="index.css" rel="stylesheet" />
+    <script src="./clipboard.min.js"></script>
   </head>
   <body>
     <div id="dragbox">
@@ -13,9 +14,13 @@
       <button id="uploadButton">Upload</button>
     </div>
     <div id="resultbox">
-      <div id="result"></div>
+      <textarea id="result"></textarea>
+      <button id="copy" data-clipboard-target="#result">
+        Copy to clipboard
+      </button>
     </div>
     <script src="./SimpleAjaxUploader.min.js"></script>
+    <script src="./clipboard.min.js"></script>
     <script src="./index.js"></script>
   </body>
 </html>
